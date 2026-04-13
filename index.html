@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily City News | Editorial Professional Edition</title>
+    <title>Daily City News | Professional Editorial Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -13,25 +13,36 @@
         .nav-btn { cursor: pointer; transition: color 0.2s; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; border-bottom: 2px solid transparent; }
         .nav-btn:hover { color: #cc0000; }
         .active-filter { color: #cc0000; border-bottom-color: #cc0000; }
-        .hidden { display: none; }
+        .hidden { display: none !important; }
         
         .news-img { width: 100%; object-fit: cover; border-bottom: 1px solid #eee; margin-bottom: 1.25rem; }
         
-        /* 首頁 4 重點 + 6 小篇 網格設定 */
-        .grid-home { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem; }
-        .is-featured { display: block; } /* 標記為重點篇幅 */
+        /* 網格基礎佈局 */
+        .grid-layout { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem; }
+
+        /* 首頁專屬樣式 (Active only when 'all' is selected) */
+        .home-mode .lead-story { grid-column: span 12; border-bottom: 3px solid #000; padding-bottom: 2.5rem; }
+        .home-mode .lead-story h2 { font-size: 4.5rem; line-height: 1; }
+        .home-mode .lead-story p.summary { font-size: 1.5rem; font-style: italic; color: #374151; }
         
-        .lead-story { grid-column: span 12; border-bottom: 3px solid #000; padding-bottom: 2.5rem; }
-        .big-story { grid-column: span 4; border-bottom: 1px solid #ddd; padding-bottom: 2rem; }
-        .small-story { grid-column: span 4; padding-bottom: 1.5rem; }
+        .home-mode .big-story { grid-column: span 4; border-bottom: 1px solid #ddd; padding-bottom: 2rem; }
+        .home-mode .big-story h2 { font-size: 1.5rem; line-height: 1.25; }
+        
+        .home-mode .small-story { grid-column: span 4; padding-bottom: 1.5rem; }
+        .home-mode .small-story h3 { font-size: 1.25rem; }
 
-        @media (max-width: 1024px) { .big-story, .small-story { grid-column: span 6; } }
-        @media (max-width: 768px) { .lead-story, .big-story, .small-story { grid-column: span 12; } }
+        /* 分類模式樣式 (Active when a category is selected) */
+        .category-mode { display: flex; flex-direction: column; gap: 3rem; }
+        .category-mode .news-item { grid-column: span 12; width: 100%; border-bottom: 1px solid #eee; padding-bottom: 2.5rem; display: flex; flex-direction: row; gap: 2rem; align-items: flex-start; }
+        .category-mode .news-img { width: 400px; height: 250px; margin-bottom: 0; }
+        .category-mode h2, .category-mode h3 { font-size: 2rem !important; margin-bottom: 1rem; }
+        .category-mode p { font-size: 1rem !important; font-style: normal !important; color: #4b5563 !important; }
 
-        /* 分類頁：標準列表模式 */
-        .list-category { display: flex; flex-direction: column; }
-        .list-category .news-item { width: 100%; border-bottom: 1px solid #eee; padding-bottom: 2.5rem; margin-bottom: 2.5rem; }
-        .list-category .news-img { max-width: 700px; height: auto; aspect-ratio: 16/9; }
+        @media (max-width: 768px) {
+            .category-mode .news-item { flex-direction: column; }
+            .category-mode .news-img { width: 100%; height: auto; }
+            .home-mode .lead-story h2 { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -50,76 +61,76 @@
     </header>
 
     <main class="max-w-7xl mx-auto p-6 md:p-12">
-        <div id="news-container" class="grid-home">
+        <div id="news-container" class="grid-layout home-mode">
             
-            <article class="news-item lead-story is-featured" data-category="society">
+            <article class="news-item lead-story" data-category="society">
                 <p class="text-red-700 font-bold text-sm uppercase mb-3 tracking-widest border-l-4 border-red-700 pl-2">Breaking News</p>
-                <img src="images/train.png" class="news-img h-[500px]" alt="Hualien Train Derailment">
-                <h2 class="text-5xl md:text-7xl font-black leading-tight mb-6">Orient Express Derails Near Hualien Station Triggering Rush Hour Chaos</h2>
-                <p class="text-2xl text-gray-700 leading-relaxed mb-6 font-light italic">"Search and rescue operations are currently underway after the Orient Express commuter train jumped the tracks this morning. Initial reports confirm five injuries near the region's main railway artery."</p>
+                <img src="images/train.png" class="news-img" style="height: 500px;" alt="Train">
+                <h2 class="font-black mb-4">Orient Express Derails Near Hualien Station Triggering Rush Hour Chaos</h2>
+                <p class="summary leading-relaxed">"Search and rescue operations are currently underway after the Orient Express commuter train jumped the tracks this morning. Initial reports confirm five injuries near the region's main railway artery."</p>
             </article>
 
-            <article class="news-item big-story is-featured" data-category="society">
+            <article class="news-item big-story" data-category="society">
                 <p class="text-gray-500 font-bold text-xs uppercase mb-2">Housing Justice</p>
                 <img src="images/rent.png" class="news-img h-64" alt="Protest">
-                <h2 class="text-2xl font-bold leading-tight mb-4">Skyrocketing Property Values Drive Taiwan Rent Prices Up by 25 Percent</h2>
-                <p class="text-gray-600 leading-relaxed text-sm">As property markets hit historic highs, young professionals are being squeezed out of cities, sparking massive protests for housing transparency.</p>
+                <h2 class="font-bold mb-3">Skyrocketing Property Values Drive Taiwan Rent Prices Up by 25 Percent</h2>
+                <p class="text-gray-600 text-sm">As property markets hit historic highs, young professionals are being squeezed out of cities, sparking massive protests for housing transparency.</p>
             </article>
 
-            <article class="news-item big-story is-featured" data-category="tech">
+            <article class="news-item big-story" data-category="tech">
                 <p class="text-gray-500 font-bold text-xs uppercase mb-2">Cyber Security</p>
-                <img src="images/data.png" class="news-img h-64" alt="Security Alert">
-                <h2 class="text-2xl font-bold leading-tight mb-4">Urber Confirms Massive Security Breach Exposing Records of Two Million Users</h2>
-                <p class="text-gray-600 leading-relaxed text-sm">The ride-sharing giant admitted a sophisticated cyberattack successfully bypassed encryption, leaking sensitive financial data online.</p>
+                <img src="images/data.png" class="news-img h-64" alt="Data">
+                <h2 class="font-bold mb-3">Urber Confirms Massive Security Breach Exposing Records of Two Million Users</h2>
+                <p class="text-gray-600 text-sm">The ride-sharing giant admitted a sophisticated cyberattack successfully bypassed encryption, leaking sensitive financial data online.</p>
             </article>
 
-            <article class="news-item big-story is-featured" data-category="tech">
-                <img src="images/phishing.png" class="news-img h-64" alt="Cyber Scam">
+            <article class="news-item big-story" data-category="tech">
                 <p class="text-gray-500 font-bold text-xs uppercase mb-2">Digital Crimes</p>
-                <h2 class="text-2xl font-bold leading-tight mb-4">Top Technical University Student Loses Entire Tuition to Phishing Scam</h2>
-                <p class="text-gray-600 leading-relaxed text-sm">A senior student in Taipei discovered his bank account was drained after responding to a fraudulent scholarship email notification.</p>
+                <img src="images/phishing.png" class="news-img h-64" alt="Scam">
+                <h2 class="font-bold mb-3">Top Technical University Student Loses Entire Tuition to Phishing Scam</h2>
+                <p class="text-gray-600 text-sm">A senior student in Taipei discovered his bank account was drained after responding to a fraudulent scholarship email notification.</p>
             </article>
 
             <article class="news-item small-story" data-category="entertainment">
-                <img src="images/marathon.png" class="news-img h-48" alt="Athletics">
+                <img src="images/marathon.png" class="news-img h-48" alt="Sports">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Sports</p>
-                <h3 class="text-xl font-bold leading-tight mb-3">Chen Jun-hao Shatters National Marathon Record During Taipei International</h3>
-                <p class="text-gray-600 text-sm">Chen Jun-hao dominated the final five kilometers, finishing three minutes ahead of the previous national record.</p>
+                <h3 class="font-bold mb-2">Chen Jun-hao Shatters National Marathon Record During Taipei International</h3>
+                <p class="text-gray-600 text-xs">Chen Jun-hao dominated the final five kilometers, finishing three minutes ahead of the previous record.</p>
             </article>
 
             <article class="news-item small-story" data-category="environment">
-                <img src="images/owl.png" class="news-img h-48" alt="Wildlife">
+                <img src="images/owl.png" class="news-img h-48" alt="Owl">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Conservation</p>
-                <h3 class="text-xl font-bold leading-tight mb-3">Extinct Owl Species Spotted in Hualien Mountains After Five Decades</h3>
-                <p class="text-gray-600 text-sm">Ecologists captured high-resolution footage of a rare owl species previously declared extinct in the remote wilderness.</p>
+                <h3 class="font-bold mb-2">Extinct Owl Species Spotted in Hualien Mountains After Five Decades</h3>
+                <p class="text-gray-600 text-xs">Ecologists captured high-resolution footage of a rare owl species previously declared extinct in the wild.</p>
             </article>
 
             <article class="news-item small-story" data-category="tech">
-                <img src="images/robot.png" class="news-img h-48" alt="Healthcare AI">
+                <img src="images/robot.png" class="news-img h-48" alt="AI">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Innovation</p>
-                <h3 class="text-xl font-bold leading-tight mb-3">NTUST Hospital Deploys Autonomous AI Robots to Support Medical Staff</h3>
-                <p class="text-gray-600 text-sm">NTUST Hospital has integrated service robots to handle the delivery of medication, allowing nurses to focus on patients.</p>
+                <h3 class="font-bold mb-2">NTUST Hospital Deploys Autonomous AI Robots to Support Medical Staff</h3>
+                <p class="text-gray-600 text-xs">NTUST Hospital has integrated service robots to handle the delivery of medication to frontline wards.</p>
             </article>
 
             <article class="news-item small-story" data-category="environment">
-                <img src="images/hail.png" class="news-img h-48" alt="Extreme Weather">
+                <img src="images/hail.png" class="news-img h-48" alt="Weather">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Climate Alert</p>
-                <h3 class="text-xl font-bold leading-tight mb-3">Unprecedented Hailstorm Batters Hsinchu City Damaging Hundreds of Vehicles</h3>
-                <p class="text-gray-600 text-sm">Residents were caught off guard as a freak storm dropped golf-ball-sized hail, damaging over 300 parked cars.</p>
+                <h3 class="font-bold mb-2">Unprecedented Hailstorm Batters Hsinchu City Damaging Hundreds of Vehicles</h3>
+                <p class="text-gray-600 text-xs">Residents were caught off guard as a freak storm dropped golf-ball-sized hail, damaging 300 cars.</p>
             </article>
 
             <article class="news-item small-story" data-category="society">
-                <img src="images/ban.png" class="news-img h-48" alt="Education">
+                <img src="images/ban.png" class="news-img h-48" alt="School">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Education</p>
-                <h3 class="text-xl font-bold leading-tight mb-3">Taichung High School Implements Total Cellphone Ban to Improve Focus</h3>
-                <p class="text-gray-600 text-sm">A public high school has banned all mobile devices to combat social media addiction and improve student mental health.</p>
+                <h3 class="font-bold mb-2">Taichung High School Implements Total Cellphone Ban to Improve Focus</h3>
+                <p class="text-gray-600 text-xs">A public high school has banned all mobile devices to combat social media addiction among students.</p>
             </article>
 
             <article class="news-item small-story" data-category="entertainment">
-                <img src="images/tiktok.png" class="news-img h-48" alt="Social Media Trends">
+                <img src="images/tiktok.png" class="news-img h-48" alt="TikTok">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Community</p>
-                <h3 class="text-xl font-bold leading-tight mb-3">TikTok #TrashChallenge Goes Viral at Da'an Forest Park Among Teenagers</h3>
-                <p class="text-gray-600 text-sm">Dozens of students gathered to collect litter while documenting the process for a viral environmental movement.</p>
+                <h3 class="font-bold mb-2">TikTok #TrashChallenge Goes Viral at Da'an Forest Park Among Teenagers</h3>
+                <p class="text-gray-600 text-xs">Dozens of students gathered to collect litter while documenting the process for a viral video.</p>
             </article>
 
         </div>
@@ -127,7 +138,7 @@
 
     <footer class="bg-black text-white p-12 mt-12">
         <div class="max-w-7xl mx-auto text-center">
-            <p class="text-gray-400 text-sm">© 2026 Daily City News. All rights reserved. | Professional Editorial Edition</p>
+            <p class="text-gray-400 text-sm">© 2026 Daily City News. All rights reserved. | Editorial Internship Project</p>
         </div>
     </footer>
 
@@ -145,18 +156,12 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
 
                 if (category === 'all') {
-                    // 首頁模式：顯示所有文章，恢復網格
-                    container.className = 'grid-home';
+                    container.className = 'grid-layout home-mode';
                     items.forEach(item => item.classList.remove('hidden'));
                 } else {
-                    // 分類模式：切換至列表佈局
-                    container.className = 'list-category';
+                    container.className = 'grid-layout category-mode';
                     items.forEach(item => {
-                        // 關鍵邏輯：只顯示符合分類且「非」重點篇幅(is-featured)的文章
-                        const matchesCategory = item.getAttribute('data-category') === category;
-                        const isSmallStory = !item.classList.contains('is-featured');
-                        
-                        if (matchesCategory && isSmallStory) {
+                        if (item.getAttribute('data-category') === category) {
                             item.classList.remove('hidden');
                         } else {
                             item.classList.add('hidden');
