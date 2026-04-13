@@ -17,31 +17,37 @@
         
         .news-img { width: 100%; object-fit: cover; border-bottom: 1px solid #eee; margin-bottom: 1.25rem; }
         
-        /* 網格基礎佈局 */
         .grid-layout { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2.5rem; }
 
-        /* 首頁專屬樣式 (Active only when 'all' is selected) */
+        /* 首頁模式樣式優化 */
         .home-mode .lead-story { grid-column: span 12; border-bottom: 3px solid #000; padding-bottom: 2.5rem; }
-        .home-mode .lead-story h2 { font-size: 4.5rem; line-height: 1; }
-        .home-mode .lead-story p.summary { font-size: 1.5rem; font-style: italic; color: #374151; }
+        .home-mode .lead-story h2 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .home-mode .lead-story p.summary { font-size: 1.75rem; font-style: italic; color: #374151; line-height: 1.4; }
         
         .home-mode .big-story { grid-column: span 4; border-bottom: 1px solid #ddd; padding-bottom: 2rem; }
-        .home-mode .big-story h2 { font-size: 1.5rem; line-height: 1.25; }
+        .home-mode .big-story h2 { font-size: 1.75rem; line-height: 1.25; margin-bottom: 1rem; }
+        .home-mode .big-story p.summary { font-size: 1.125rem; line-height: 1.6; }
         
         .home-mode .small-story { grid-column: span 4; padding-bottom: 1.5rem; }
-        .home-mode .small-story h3 { font-size: 1.25rem; }
+        .home-mode .small-story h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .home-mode .small-story p.summary { font-size: 1.125rem; line-height: 1.5; }
 
-        /* 分類模式樣式 (Active when a category is selected) */
+        /* 分類模式樣式優化 */
         .category-mode { display: flex; flex-direction: column; gap: 3rem; }
-        .category-mode .news-item { grid-column: span 12; width: 100%; border-bottom: 1px solid #eee; padding-bottom: 2.5rem; display: flex; flex-direction: row; gap: 2rem; align-items: flex-start; }
-        .category-mode .news-img { width: 400px; height: 250px; margin-bottom: 0; }
-        .category-mode h2, .category-mode h3 { font-size: 2rem !important; margin-bottom: 1rem; }
-        .category-mode p { font-size: 1rem !important; font-style: normal !important; color: #4b5563 !important; }
+        .category-mode .news-item { grid-column: span 12; width: 100%; border-bottom: 1px solid #eee; padding-bottom: 2.5rem; display: flex; flex-direction: row; gap: 2.5rem; align-items: flex-start; }
+        .category-mode .news-img { width: 450px; height: 280px; margin-bottom: 0; flex-shrink: 0; }
+        .category-mode h2, .category-mode h3 { font-size: 2.25rem !important; margin-bottom: 1rem; line-height: 1.2; }
+        .category-mode p.summary { font-size: 1.25rem !important; font-style: normal !important; color: #4b5563 !important; line-height: 1.6; }
+
+        @media (max-width: 1024px) {
+            .category-mode .news-img { width: 350px; height: 220px; }
+        }
 
         @media (max-width: 768px) {
             .category-mode .news-item { flex-direction: column; }
             .category-mode .news-img { width: 100%; height: auto; }
-            .home-mode .lead-story h2 { font-size: 2.5rem; }
+            .home-mode .lead-story h2 { font-size: 2.75rem; }
+            .home-mode .lead-story p.summary { font-size: 1.25rem; }
         }
     </style>
 </head>
@@ -65,72 +71,72 @@
             
             <article class="news-item lead-story" data-category="society">
                 <p class="text-red-700 font-bold text-sm uppercase mb-3 tracking-widest border-l-4 border-red-700 pl-2">Breaking News</p>
-                <img src="images/train.png" class="news-img" style="height: 500px;" alt="Train">
-                <h2 class="font-black mb-4">Orient Express Derails Near Hualien Station Triggering Rush Hour Chaos</h2>
-                <p class="summary leading-relaxed">"Search and rescue operations are currently underway after the Orient Express commuter train jumped the tracks this morning. Initial reports confirm five injuries near the region's main railway artery."</p>
+                <img src="images/train.png" class="news-img" style="height: 520px;" alt="Train">
+                <h2 class="font-black">Orient Express Derails Near Hualien Station Triggering Rush Hour Chaos</h2>
+                <p class="summary">"Search and rescue operations are currently underway after the Orient Express commuter train jumped the tracks this morning. Initial reports confirm five injuries near the region's main railway artery."</p>
             </article>
 
             <article class="news-item big-story" data-category="society">
                 <p class="text-gray-500 font-bold text-xs uppercase mb-2">Housing Justice</p>
                 <img src="images/rent.png" class="news-img h-64" alt="Protest">
-                <h2 class="font-bold mb-3">Skyrocketing Property Values Drive Taiwan Rent Prices Up by 25 Percent</h2>
-                <p class="text-gray-600 text-sm">As property markets hit historic highs, young professionals are being squeezed out of cities, sparking massive protests for housing transparency.</p>
+                <h2 class="font-bold">Skyrocketing Property Values Drive Taiwan Rent Prices Up by 25 Percent</h2>
+                <p class="summary text-gray-600">As property markets hit historic highs, young professionals are being squeezed out of cities, sparking massive protests for housing transparency.</p>
             </article>
 
             <article class="news-item big-story" data-category="tech">
                 <p class="text-gray-500 font-bold text-xs uppercase mb-2">Cyber Security</p>
                 <img src="images/data.png" class="news-img h-64" alt="Data">
-                <h2 class="font-bold mb-3">Urber Confirms Massive Security Breach Exposing Records of Two Million Users</h2>
-                <p class="text-gray-600 text-sm">The ride-sharing giant admitted a sophisticated cyberattack successfully bypassed encryption, leaking sensitive financial data online.</p>
+                <h2 class="font-bold">Urber Confirms Massive Security Breach Exposing Records of Two Million Users</h2>
+                <p class="summary text-gray-600">The ride-sharing giant admitted a sophisticated cyberattack successfully bypassed encryption, leaking sensitive financial data online.</p>
             </article>
 
             <article class="news-item big-story" data-category="tech">
                 <p class="text-gray-500 font-bold text-xs uppercase mb-2">Digital Crimes</p>
                 <img src="images/phishing.png" class="news-img h-64" alt="Scam">
-                <h2 class="font-bold mb-3">Top Technical University Student Loses Entire Tuition to Phishing Scam</h2>
-                <p class="text-gray-600 text-sm">A senior student in Taipei discovered his bank account was drained after responding to a fraudulent scholarship email notification.</p>
+                <h2 class="font-bold">Top Technical University Student Loses Entire Tuition to Phishing Scam</h2>
+                <p class="summary text-gray-600">A senior student in Taipei discovered his bank account was drained after responding to a fraudulent scholarship email notification.</p>
             </article>
 
             <article class="news-item small-story" data-category="entertainment">
-                <img src="images/marathon.png" class="news-img h-48" alt="Sports">
+                <img src="images/marathon.png" class="news-img h-52" alt="Sports">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Sports</p>
-                <h3 class="font-bold mb-2">Chen Jun-hao Shatters National Marathon Record During Taipei International</h3>
-                <p class="text-gray-600 text-xs">Chen Jun-hao dominated the final five kilometers, finishing three minutes ahead of the previous record.</p>
+                <h3 class="font-bold">Chen Jun-hao Shatters National Marathon Record During Taipei International</h3>
+                <p class="summary text-gray-600">Chen Jun-hao dominated the final five kilometers, finishing three minutes ahead of the previous record.</p>
             </article>
 
             <article class="news-item small-story" data-category="environment">
-                <img src="images/owl.png" class="news-img h-48" alt="Owl">
+                <img src="images/owl.png" class="news-img h-52" alt="Owl">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Conservation</p>
-                <h3 class="font-bold mb-2">Extinct Owl Species Spotted in Hualien Mountains After Five Decades</h3>
-                <p class="text-gray-600 text-xs">Ecologists captured high-resolution footage of a rare owl species previously declared extinct in the wild.</p>
+                <h3 class="font-bold">Extinct Owl Species Spotted in Hualien Mountains After Five Decades</h3>
+                <p class="summary text-gray-600">Ecologists captured high-resolution footage of a rare owl species previously declared extinct in the wild.</p>
             </article>
 
             <article class="news-item small-story" data-category="tech">
-                <img src="images/robot.png" class="news-img h-48" alt="AI">
+                <img src="images/robot.png" class="news-img h-52" alt="AI">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Innovation</p>
-                <h3 class="font-bold mb-2">NTUST Hospital Deploys Autonomous AI Robots to Support Medical Staff</h3>
-                <p class="text-gray-600 text-xs">NTUST Hospital has integrated service robots to handle the delivery of medication to frontline wards.</p>
+                <h3 class="font-bold">NTUST Hospital Deploys Autonomous AI Robots to Support Medical Staff</h3>
+                <p class="summary text-gray-600">NTUST Hospital has integrated service robots to handle the delivery of medication to frontline wards.</p>
             </article>
 
             <article class="news-item small-story" data-category="environment">
-                <img src="images/hail.png" class="news-img h-48" alt="Weather">
+                <img src="images/hail.png" class="news-img h-52" alt="Weather">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Climate Alert</p>
-                <h3 class="font-bold mb-2">Unprecedented Hailstorm Batters Hsinchu City Damaging Hundreds of Vehicles</h3>
-                <p class="text-gray-600 text-xs">Residents were caught off guard as a freak storm dropped golf-ball-sized hail, damaging 300 cars.</p>
+                <h3 class="font-bold">Unprecedented Hailstorm Batters Hsinchu City Damaging Hundreds of Vehicles</h3>
+                <p class="summary text-gray-600">Residents were caught off guard as a freak storm dropped golf-ball-sized hail, damaging 300 cars.</p>
             </article>
 
             <article class="news-item small-story" data-category="society">
-                <img src="images/ban.png" class="news-img h-48" alt="School">
+                <img src="images/ban.png" class="news-img h-52" alt="School">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Education</p>
-                <h3 class="font-bold mb-2">Taichung High School Implements Total Cellphone Ban to Improve Focus</h3>
-                <p class="text-gray-600 text-xs">A public high school has banned all mobile devices to combat social media addiction among students.</p>
+                <h3 class="font-bold">Taichung High School Implements Total Cellphone Ban to Improve Focus</h3>
+                <p class="summary text-gray-600">A public high school has banned all mobile devices to combat social media addiction among students.</p>
             </article>
 
             <article class="news-item small-story" data-category="entertainment">
-                <img src="images/tiktok.png" class="news-img h-48" alt="TikTok">
+                <img src="images/tiktok.png" class="news-img h-52" alt="TikTok">
                 <p class="text-blue-800 font-bold text-xs uppercase mb-2">Community</p>
-                <h3 class="font-bold mb-2">TikTok #TrashChallenge Goes Viral at Da'an Forest Park Among Teenagers</h3>
-                <p class="text-gray-600 text-xs">Dozens of students gathered to collect litter while documenting the process for a viral video.</p>
+                <h3 class="font-bold">TikTok #TrashChallenge Goes Viral at Da'an Forest Park Among Teenagers</h3>
+                <p class="summary text-gray-600">Dozens of students gathered to collect litter while documenting the process for a viral video.</p>
             </article>
 
         </div>
@@ -138,7 +144,7 @@
 
     <footer class="bg-black text-white p-12 mt-12">
         <div class="max-w-7xl mx-auto text-center">
-            <p class="text-gray-400 text-sm">© 2026 Daily City News. All rights reserved. | Editorial Internship Project</p>
+            <p class="text-gray-400 text-sm">© 2026 Daily City News. All rights reserved. | Professional Editorial Edition</p>
         </div>
     </footer>
 
