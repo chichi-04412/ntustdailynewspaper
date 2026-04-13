@@ -3,32 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily City News | International Edition</title>
+    <title>Daily City News | Editor's Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { background-color: #ffffff; color: #000000; font-family: 'Roboto', sans-serif; }
-        .font-masthead { text-transform: uppercase; font-weight: 900; color: #cc0000; }
+        .font-masthead { text-transform: uppercase; font-weight: 900; color: #cc0000; letter-spacing: -2px; }
         .nav-btn { cursor: pointer; transition: color 0.2s; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
         .nav-btn:hover { color: #cc0000; }
         .active-filter { color: #cc0000; border-bottom: 2px solid #cc0000; }
         .hidden { display: none; }
         
-        /* 首頁排版：網格 */
-        .grid-layout { display: grid; grid-template-columns: repeat(1, 1fr); gap: 2rem; }
-        @media (min-width: 768px) { .grid-layout { grid-template-columns: repeat(2, 1fr); } }
+        /* 首頁：階級式網格 */
+        .grid-home { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
+        .lead-story { grid-column: span 12; border-bottom: 4px solid black; padding-bottom: 2rem; }
+        .big-story { grid-column: span 6; border-bottom: 1px solid #ddd; padding-bottom: 1.5rem; }
+        .small-story { grid-column: span 4; padding-bottom: 1rem; }
 
-        /* 分類頁排版：垂直列表並靠右 */
-        .list-layout { display: flex; flex-direction: column; align-items: flex-end; width: 100%; text-align: right; }
-        .list-layout .news-item { width: 100%; max-width: 800px; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
+        @media (max-width: 768px) {
+            .big-story, .small-story { grid-column: span 12; }
+        }
+
+        /* 分類頁：標準靠左列表 */
+        .list-category { display: flex; flex-direction: column; text-align: left; }
+        .list-category .news-item { width: 100%; border-bottom: 1px solid #eee; padding-bottom: 2rem; margin-bottom: 2rem; }
     </style>
 </head>
 <body class="p-0">
 
     <header class="bg-black text-white p-4 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
-            <h1 class="font-masthead text-3xl tracking-tighter">Daily City News</h1>
-            <nav id="nav-filters" class="flex gap-6 mt-4 md:mt-0 md:justify-end w-full">
+            <h1 class="font-masthead text-4xl">Daily City News</h1>
+            <nav id="nav-filters" class="flex gap-6 mt-4 md:mt-0 md:justify-end">
                 <span class="nav-btn active-filter" data-filter="all">Home</span>
                 <span class="nav-btn" data-filter="environment">Environment</span>
                 <span class="nav-btn" data-filter="society">Society</span>
@@ -39,76 +45,69 @@
     </header>
 
     <main class="max-w-7xl mx-auto p-6 md:p-12">
-        <div id="news-container" class="grid-layout">
+        <div id="news-container" class="grid-home">
             
-            <div class="news-item" data-category="society">
-                <p class="text-red-600 font-bold text-xs uppercase mb-1">Society</p>
-                <h2 class="text-3xl font-black leading-tight mb-3">RUSH HOUR TERROR: COMMUTER TRAIN DERAILS, FIVE INJURED</h2>
-                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A commuter train derailed during the morning rush hour today, leaving five people injured and causing massive transportation delays." [cite: 33, 34]</p>
-                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: Wide-angle aerial shot showing tilted carriages and rescue teams. </p>
+            <div class="news-item lead-story" data-category="society">
+                <p class="text-red-600 font-bold text-sm uppercase mb-2">Society / Breaking</p>
+                <h2 class="text-5xl md:text-7xl font-black leading-tight mb-4">RUSH HOUR TERROR: COMMUTER TRAIN DERAILS, FIVE INJURED</h2>
+                <p class="text-2xl text-gray-800 font-bold mb-4 italic">"A commuter train derailed during the morning rush hour today, leaving five people injured and causing massive transportation delays."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase">Photo Idea: Wide-angle aerial shot of tilted carriages and emergency rescue teams.</p>
             </div>
 
-            <div class="news-item" data-category="society">
+            <div class="news-item big-story" data-category="society">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Society</p>
                 <h2 class="text-3xl font-black leading-tight mb-3">PRICED OUT: RENTS SURGE 25% AS YOUTH DEMAND ACTION</h2>
-                <p class="text-lg text-gray-800 font-bold mb-3 italic">"Rent prices in the city have increased by 25% over the past year, prompting students and young professionals to call for government intervention." [cite: 35, 36]</p>
-                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: Protesters in front of City Hall with signs reading "Housing is a Human Right". </p>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"Rent prices in the city have increased by 25% over the past year, prompting students and young professionals to call for government intervention."</p>
+                <p class="text-xs text-gray-500 font-bold uppercase">Photo Idea: Protesters in front of City Hall with signs reading "Housing is a Human Right".</p>
             </div>
 
-            <div class="news-item" data-category="tech">
-                <p class="text-red-600 font-bold text-xs uppercase mb-1">Tech</p>
-                <h2 class="text-3xl font-black leading-tight mb-3">PHISHING SCAM DISGUISED AS SCHOLARSHIP COSTS STUDENT $5,000</h2>
-                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A local university student lost over $5,000 after falling for a sophisticated phishing email disguised as an official scholarship offer." [cite: 19]</p>
-                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A stressed student in front of a laptop in a dark room. </p>
-            </div>
-
-            <div class="news-item" data-category="tech">
+            <div class="news-item big-story" data-category="tech">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Tech</p>
                 <h2 class="text-3xl font-black leading-tight mb-3">MASSIVE DATA BREACH: 2 MILLION RIDE-SHARE USERS EXPOSED</h2>
-                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A major ride-sharing application has confirmed a significant security breach, leaking the personal data of over 2 million users online." [cite: 27, 28]</p>
-                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: Smartphone screen with a red "Security Breach" alert. </p>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A major ride-sharing application has confirmed a significant security breach, leaking the personal data of over 2 million users online."</p>
+                <p class="text-xs text-gray-500 font-bold uppercase">Photo Idea: Smartphone screen with a red "Security Breach" alert.</p>
             </div>
 
-            <div class="news-item" data-category="entertainment">
-                <p class="text-red-600 font-bold text-xs uppercase mb-1">Entertainment</p>
-                <h2 class="text-3xl font-black leading-tight mb-3">LOCAL RUNNER SHATTERS NATIONAL MARATHON RECORD</h2>
-                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A local 22-year-old athlete stunned the world today by breaking the national marathon record and qualifying for the international games." [cite: 20]</p>
-                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: Athlete crossing the finish line with arms raised. </p>
-            </div>
-
-            <div class="news-item" data-category="environment">
-                <p class="text-red-600 font-bold text-xs uppercase mb-1">Environment</p>
-                <h2 class="text-3xl font-black leading-tight mb-3">EXTINCT OWL SPECIES REDISCOVERED IN FOREST RESERVE</h2>
-                <p class="text-lg text-gray-800 font-bold mb-3 italic">"Wildlife experts confirmed the sighting of a rare owl species, previously thought to be extinct, during a research expedition." [cite: 25, 26]</p>
-                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: High-definition image of an owl on a mossy branch. </p>
-            </div>
-
-            <div class="news-item" data-category="tech">
+            <div class="news-item small-story" data-category="tech">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Tech</p>
-                <h2 class="text-3xl font-black leading-tight mb-3">HOSPITAL INTRODUCES AI ROBOTS TO BOOST EFFICIENCY</h2>
-                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A major hospital has introduced AI robots to deliver medicine and documents, sparking a debate regarding job security for staff." [cite: 43, 44]</p>
-                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: White robot moving through a hospital corridor. </p>
+                <h3 class="text-xl font-black leading-tight mb-2">PHISHING SCAM COSTS STUDENT $5,000</h3>
+                <p class="text-sm text-gray-700 italic">"A university student lost $5,000 after falling for a scholarship phishing email."</p>
             </div>
 
-            <div class="news-item" data-category="environment">
-                <p class="text-red-600 font-bold text-xs uppercase mb-1">Environment</p>
-                <h2 class="text-3xl font-black leading-tight mb-3">FREAK HAILSTORM BATTERS CAPITAL, INJURING 12</h2>
-                <p class="text-lg text-gray-800 font-bold mb-3 italic">"An unexpected hailstorm hit the capital yesterday, damaging over 300 vehicles and leaving 12 people injured." [cite: 45, 46]</p>
-                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: Smashed car windshields covered in large hailstones. </p>
-            </div>
-
-            <div class="news-item" data-category="society">
-                <p class="text-red-600 font-bold text-xs uppercase mb-1">Society</p>
-                <h2 class="text-3xl font-black leading-tight mb-3">MIDDLE SCHOOL ENFORCES TOTAL CELLPHONE BAN</h2>
-                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A local middle school has completely banned cellphone use during school hours, prompting mixed reactions from parents." [cite: 49, 50]</p>
-                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A "No Cellphones" sign posted on a school wall. </p>
-            </div>
-
-            <div class="news-item" data-category="entertainment">
+            <div class="news-item small-story" data-category="entertainment">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Entertainment</p>
-                <h2 class="text-3xl font-black leading-tight mb-3">TIKTOK #TRASHCHALLENGE GOES VIRAL IN LOCAL PARKS</h2>
-                <p class="text-lg text-gray-800 font-bold mb-3 italic">"High school students started a TikTok challenge to clean up parks, gaining over 2 million views and inspiring others." [cite: 31, 32]</p>
-                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: Teenagers holding bags of trash while filming. </p>
+                <h3 class="text-xl font-black leading-tight mb-2">LOCAL RUNNER SHATTERS MARATHON RECORD</h3>
+                <p class="text-sm text-gray-700 italic">"A 22-year-old athlete broke the national marathon record today."</p>
+            </div>
+
+            <div class="news-item small-story" data-category="environment">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Environment</p>
+                <h3 class="text-xl font-black leading-tight mb-2">RARE OWL REDISCOVERED IN RESERVE</h3>
+                <p class="text-sm text-gray-700 italic">"Wildlife experts spotted a rare owl species thought to be extinct."</p>
+            </div>
+
+            <div class="news-item small-story" data-category="tech">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Tech</p>
+                <h3 class="text-xl font-black leading-tight mb-2">HOSPITAL INTRODUCES AI ROBOTS</h3>
+                <p class="text-sm text-gray-700 italic">"Hospital deploys AI robots to boost medical delivery efficiency."</p>
+            </div>
+
+            <div class="news-item small-story" data-category="environment">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Environment</p>
+                <h3 class="text-xl font-black leading-tight mb-2">FREAK HAILSTORM BATTERS CAPITAL</h3>
+                <p class="text-sm text-gray-700 italic">"Unexpected hailstorm damages 300 vehicles and injures 12."</p>
+            </div>
+
+            <div class="news-item small-story" data-category="society">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Society</p>
+                <h3 class="text-xl font-black leading-tight mb-2">MIDDLE SCHOOL ENFORCES PHONE BAN</h3>
+                <p class="text-sm text-gray-700 italic">"Local middle school bans cellphone use during school hours."</p>
+            </div>
+
+            <div class="news-item small-story" data-category="entertainment">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Entertainment</p>
+                <h3 class="text-xl font-black leading-tight mb-2">TIKTOK #TRASHCHALLENGE GOES VIRAL</h3>
+                <p class="text-sm text-gray-700 italic">"Students clean up parks in viral TikTok movement."</p>
             </div>
 
         </div>
@@ -125,20 +124,23 @@
                 filters.forEach(f => f.classList.remove('active-filter'));
                 filter.classList.add('active-filter');
 
-                // 切換排版格式
                 if (category === 'all') {
-                    container.className = 'grid-layout';
+                    // 恢復首頁網格階級
+                    container.className = 'grid-home';
+                    items.forEach(item => item.classList.remove('hidden'));
                 } else {
-                    container.className = 'list-layout';
+                    // 切換為靠左列表佈局
+                    container.className = 'list-category';
+                    items.forEach(item => {
+                        if (item.getAttribute('data-category') === category) {
+                            item.classList.remove('hidden');
+                            // 統一分類頁內容格式
+                            item.style.gridColumn = "auto"; 
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
                 }
-
-                items.forEach(item => {
-                    if (category === 'all' || item.getAttribute('data-category') === category) {
-                        item.classList.remove('hidden');
-                    } else {
-                        item.classList.add('hidden');
-                    }
-                });
             });
         });
     </script>
