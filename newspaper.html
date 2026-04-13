@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The City Vanguard - Newspaper Layout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Merriweather:ital,wght@0,300;0,700;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #f4f1ea; color: #1a1a1a; font-family: 'Merriweather', serif; }
+        .newspaper-paper { background-color: #fdfbf7; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        .font-masthead { font-family: 'Playfair Display', serif; text-transform: uppercase; font-weight: 900; }
+        .font-headline { font-family: 'Playfair Display', serif; }
+        .border-double-thick { border-top: 6px double #1a1a1a; border-bottom: 6px double #1a1a1a; }
+        .column-divider { border-right: 1px solid #ccc; }
+        .photo-box { background-color: #e5e5e5; border: 2px dashed #999; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; margin: 1rem 0; color: #555; font-style: italic; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="newspaper-paper max-w-6xl mx-auto p-6 md:p-12">
+        
+        <header class="text-center mb-8">
+            <h1 class="font-masthead text-6xl md:text-8xl tracking-tighter mb-4 text-black">The City Vanguard</h1>
+            <div class="border-double-thick py-2 flex flex-col md:flex-row justify-between items-center text-sm font-bold uppercase tracking-widest font-sans">
+                <span>Vol. CXXII, No. 45</span>
+                <span class="my-2 md:my-0">Monday, April 13, 2026</span>
+                <span>Price: $1.50</span>
+            </div>
+        </header>
+
+        <div class="mb-12">
+            <h2 class="bg-black text-white inline-block px-3 py-1 font-sans font-bold uppercase tracking-wider mb-6">Front Page</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                
+                <div class="md:col-span-8 md:border-r md:border-gray-300 md:pr-8">
+                    <div class="text-xs font-bold text-red-700 uppercase tracking-wider mb-2 font-sans">Breaking News</div>
+                    <h2 class="font-headline text-4xl md:text-6xl font-black leading-tight mb-4">RUSH HOUR TERROR: COMMUTER TRAIN DERAILS, FIVE INJURED</h2>
+                    <div class="photo-box min-h-[300px]">
+                        <div>
+                            <span class="font-bold block mb-1">Photo Idea:</span>
+                            A wide-angle shot taken from above, showing tilted train carriages off the tracks, surrounded by flashing emergency vehicles and rescue workers.
+                        </div>
+                    </div>
+                    <p class="text-xl leading-relaxed font-bold">
+                        A commuter train derailed during the morning rush hour today, leaving five people injured and causing massive transportation delays as investigators work to determine the cause.
+                    </p>
+                </div>
+
+                <div class="md:col-span-4 flex flex-col">
+                    <h2 class="font-headline text-3xl md:text-4xl font-bold leading-tight mb-4">PHISHING SCAM DISGUISED AS SCHOLARSHIP COSTS STUDENT $5,000</h2>
+                    <div class="photo-box flex-grow min-h-[250px]">
+                        <div>
+                            <span class="font-bold block mb-1">Photo Idea:</span>
+                            A dimly lit photo of a stressed student sitting in front of a glowing laptop in a dark dorm room, holding their head in frustration.
+                        </div>
+                    </div>
+                    <p class="text-lg leading-relaxed font-bold mb-4">
+                        A local university student lost over $5,000 after falling for a sophisticated phishing scam disguised as a legitimate scholarship email.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 border-t-2 border-black pt-8">
+                <div class="md:border-r md:border-gray-300 md:pr-8">
+                    <h3 class="font-headline text-2xl font-bold mb-3">PRICED OUT: RENTS SURGE 25% AS YOUTH DEMAND ACTION</h3>
+                    <p class="text-base font-bold mb-3">
+                        With rent prices in the city skyrocketing by a staggering 25% over the past year, frustrated young professionals and students are calling for immediate government action.
+                    </p>
+                    <div class="photo-box min-h-[150px]">
+                        <span class="font-bold">Photo Idea:</span> A crowd of young protesters gathered in front of City Hall, holding cardboard signs with bold letters reading "HOUSING IS A HUMAN RIGHT."
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-headline text-2xl font-bold mb-3">MASSIVE DATA BREACH: 2 MILLION GORIDE USERS EXPOSED</h3>
+                    <p class="text-base font-bold mb-3">
+                        A major ride-sharing app has confirmed that the personal data of over 2 million users was leaked online, prompting an urgent investigation by authorities.
+                    </p>
+                    <div class="photo-box min-h-[150px]">
+                        <span class="font-bold">Photo Idea:</span> A close-up of a hand holding a smartphone; the screen displays a bright red "CRITICAL SECURITY WARNING" notification from the app.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full border-b-4 border-black my-12"></div>
+
+        <div>
+            <h2 class="bg-gray-800 text-white inline-block px-3 py-1 font-sans font-bold uppercase tracking-wider mb-6">Inside Pages</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:border-r md:border-gray-300 md:pr-8 pb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-1">Sports</div>
+                    <h3 class="font-headline text-xl font-bold mb-2">LOCAL ATHLETE SHATTERS NATIONAL MARATHON RECORD</h3>
+                    <p class="text-sm font-bold mb-4">A local 22-year-old runner finished a national marathon in just over two hours, securing a spot in the international games.</p>
+                    <div class="photo-box text-xs p-3">Photo Idea: The athlete crossing the finish line with arms raised, a digital timer showing 2:02:18 in the background.</div>
+                </div>
+
+                <div class="md:border-r md:border-gray-300 md:pr-8 pb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-1">Nature</div>
+                    <h3 class="font-headline text-xl font-bold mb-2">EXTINCT OWL SPECIES REDISCOVERED IN FOREST RESERVE</h3>
+                    <p class="text-sm font-bold mb-4">Wildlife experts are working urgently to protect a rare owl species, previously thought to be extinct, after it was spotted in a forest reserve.</p>
+                    <div class="photo-box text-xs p-3">Photo Idea: A sharp, close-up image of a rare owl perched on a branch in a dense, green forest.</div>
+                </div>
+
+                <div class="pb-6">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-1">Technology</div>
+                    <h3 class="font-headline text-xl font-bold mb-2">HOSPITAL INTRODUCES AI ROBOTS TO BOOST EFFICIENCY</h3>
+                    <p class="text-sm font-bold mb-4">A major hospital has introduced AI robots to deliver medicine, aiming to improve operations while sparking job security concerns.</p>
+                    <div class="photo-box text-xs p-3">Photo Idea: A sleek white robot moving through a clean hospital corridor, with medical staff looking on.</div>
+                </div>
+
+                <div class="md:border-r md:border-gray-300 md:pr-8 pt-6 border-t border-gray-200">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-1">Climate</div>
+                    <h3 class="font-headline text-xl font-bold mb-2">FREAK HAILSTORM BATTERS CAPITAL, INJURING 12</h3>
+                    <p class="text-sm font-bold mb-4">Climate scientists are warning of more frequent extreme weather after an unexpected hailstorm damaged over 300 vehicles yesterday.</p>
+                    <div class="photo-box text-xs p-3">Photo Idea: A street scene showing vehicles with shattered windshields and sidewalks covered in white hailstones.</div>
+                </div>
+
+                <div class="md:border-r md:border-gray-300 md:pr-8 pt-6 border-t border-gray-200">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-1">Education</div>
+                    <h3 class="font-headline text-xl font-bold mb-2">MIDDLE SCHOOL ENFORCES TOTAL CELLPHONE BAN</h3>
+                    <p class="text-sm font-bold mb-4">A city middle school has completely banned student cellphone use during school hours, leading to mixed reactions from parents.</p>
+                    <div class="photo-box text-xs p-3">Photo Idea: A "No Cellphones Allowed" sign posted on a school wall next to a collection box filled with smartphones.</div>
+                </div>
+
+                <div class="pt-6 border-t border-gray-200">
+                    <div class="text-xs font-bold text-gray-500 uppercase mb-1">Community</div>
+                    <h3 class="font-headline text-xl font-bold mb-2">TIKTOK #TRASHCHALLENGE GOES VIRAL IN LOCAL PARKS</h3>
+                    <p class="text-sm font-bold mb-4">A group of high school students has gained over 2 million views after their TikTok video challenge to clean up local parks went viral.</p>
+                    <div class="photo-box text-xs p-3">Photo Idea: A group of smiling teenagers holding large trash bags in a local park while recording the scene on a smartphone.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
