@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily City News | Editor's Edition</title>
+    <title>Daily City News | Editor's Edition with Real Photos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -14,19 +14,28 @@
         .active-filter { color: #cc0000; border-bottom: 2px solid #cc0000; }
         .hidden { display: none; }
         
+        /* 圖片統一風格：增加一點點 Grit 質感 */
+        .news-img { width: 100%; object-fit: cover; filter: grayscale(10%) contrast(105%); border: 1px solid #eee; margin-bottom: 1rem; }
+
         /* 首頁：階級式網格 */
         .grid-home { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
         .lead-story { grid-column: span 12; border-bottom: 4px solid black; padding-bottom: 2rem; }
         .big-story { grid-column: span 6; border-bottom: 1px solid #ddd; padding-bottom: 1.5rem; }
         .small-story { grid-column: span 4; padding-bottom: 1rem; }
+        
+        /* 首頁圖片高度設定 */
+        .lead-story .news-img { h-96; }
+        .big-story .news-img { h-64; }
+        .small-story .news-img { h-40; }
 
         @media (max-width: 768px) {
-            .big-story, .small-story { grid-column: span 12; }
+            .lead-story .news-img, .big-story .news-img, .small-story .news-img { grid-column: span 12; h-64; }
         }
 
         /* 分類頁：標準靠左列表 */
         .list-category { display: flex; flex-direction: column; text-align: left; }
-        .list-category .news-item { width: 100%; border-bottom: 1px solid #eee; padding-bottom: 2rem; margin-bottom: 2rem; }
+        .list-category .news-item { width: 100%; border-bottom: 1px solid #eee; padding-bottom: 2rem; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; }
+        .list-category .news-img { max-width: 600px; h-80; margin-bottom: 1.5rem; }
     </style>
 </head>
 <body class="p-0">
@@ -49,64 +58,74 @@
             
             <div class="news-item lead-story" data-category="society">
                 <p class="text-red-600 font-bold text-sm uppercase mb-2">Society / Breaking</p>
-                <h2 class="text-5xl md:text-7xl font-black leading-tight mb-4">RUSH HOUR TERROR: COMMUTER TRAIN DERAILS, FIVE INJURED</h2>
+                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/train.png" class="news-img h-96" alt="Train Derailment Scene">
+                <h2 class="text-5xl md:text-7xl font-black leading-tight mb-4 hover:text-red-700 cursor-pointer">RUSH HOUR TERROR: COMMUTER TRAIN DERAILS, FIVE INJURED</h2>
                 <p class="text-2xl text-gray-800 font-bold mb-4 italic">"A commuter train derailed during the morning rush hour today, leaving five people injured and causing massive transportation delays."</p>
-                <p class="text-sm text-gray-500 font-bold uppercase">Photo Idea: Wide-angle aerial shot of tilted carriages and emergency rescue teams.</p>
+                <p class="text-sm text-gray-500 font-bold uppercase">Source: Story 12</p>
             </div>
 
             <div class="news-item big-story" data-category="society">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Society</p>
-                <h2 class="text-3xl font-black leading-tight mb-3">PRICED OUT: RENTS SURGE 25% AS YOUTH DEMAND ACTION</h2>
+                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/rent.png" class="news-img h-64" alt="Housing Protest">
+                <h2 class="text-3xl font-black leading-tight mb-3 hover:text-red-700 cursor-pointer">PRICED OUT: RENTS SURGE 25% AS YOUTH DEMAND ACTION</h2>
                 <p class="text-lg text-gray-800 font-bold mb-3 italic">"Rent prices in the city have increased by 25% over the past year, prompting students and young professionals to call for government intervention."</p>
-                <p class="text-xs text-gray-500 font-bold uppercase">Photo Idea: Protesters in front of City Hall with signs reading "Housing is a Human Right".</p>
+                <p class="text-xs text-gray-500 font-bold uppercase">Source: Story 13</p>
             </div>
 
             <div class="news-item big-story" data-category="tech">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Tech</p>
-                <h2 class="text-3xl font-black leading-tight mb-3">MASSIVE DATA BREACH: 2 MILLION RIDE-SHARE USERS EXPOSED</h2>
+                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/data.png" class="news-img h-64" alt="Data Breach Alert">
+                <h2 class="text-3xl font-black leading-tight mb-3 hover:text-red-700 cursor-pointer">MASSIVE DATA BREACH: 2 MILLION RIDE-SHARE USERS EXPOSED</h2>
                 <p class="text-lg text-gray-800 font-bold mb-3 italic">"A major ride-sharing application has confirmed a significant security breach, leaking the personal data of over 2 million users online."</p>
-                <p class="text-xs text-gray-500 font-bold uppercase">Photo Idea: Smartphone screen with a red "Security Breach" alert.</p>
+                <p class="text-xs text-gray-500 font-bold uppercase">Source: Story 8</p>
             </div>
 
             <div class="news-item small-story" data-category="tech">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Tech</p>
-                <h3 class="text-xl font-black leading-tight mb-2">PHISHING SCAM COSTS STUDENT $5,000</h3>
+                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/phishing.png" class="news-img h-40" alt="Stressed Student">
+                <h3 class="text-xl font-black leading-tight mb-2 hover:text-red-700 cursor-pointer">PHISHING SCAM COSTS STUDENT $5,000</h3>
                 <p class="text-sm text-gray-700 italic">"A university student lost $5,000 after falling for a scholarship phishing email."</p>
             </div>
 
             <div class="news-item small-story" data-category="entertainment">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Entertainment</p>
-                <h3 class="text-xl font-black leading-tight mb-2">LOCAL RUNNER SHATTERS MARATHON RECORD</h3>
+                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/marathon.png" class="news-img h-40" alt="Marathon Finish">
+                <h3 class="text-xl font-black leading-tight mb-2 hover:text-red-700 cursor-pointer">LOCAL RUNNER SHATTERS MARATHON RECORD</h3>
                 <p class="text-sm text-gray-700 italic">"A 22-year-old athlete broke the national marathon record today."</p>
             </div>
 
             <div class="news-item small-story" data-category="environment">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Environment</p>
-                <h3 class="text-xl font-black leading-tight mb-2">RARE OWL REDISCOVERED IN RESERVE</h3>
+                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/owl.png" class="news-img h-40" alt="Rare Owl Rediscovered">
+                <h3 class="text-xl font-black leading-tight mb-2 hover:text-red-700 cursor-pointer">RARE OWL REDISCOVERED IN RESERVE</h3>
                 <p class="text-sm text-gray-700 italic">"Wildlife experts spotted a rare owl species thought to be extinct."</p>
             </div>
 
             <div class="news-item small-story" data-category="tech">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Tech</p>
-                <h3 class="text-xl font-black leading-tight mb-2">HOSPITAL INTRODUCES AI ROBOTS</h3>
+                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/robot.png" class="news-img h-40" alt="Hospital AI Robot">
+                <h3 class="text-xl font-black leading-tight mb-2 hover:text-red-700 cursor-pointer">HOSPITAL INTRODUCES AI ROBOTS</h3>
                 <p class="text-sm text-gray-700 italic">"Hospital deploys AI robots to boost medical delivery efficiency."</p>
             </div>
 
             <div class="news-item small-story" data-category="environment">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Environment</p>
-                <h3 class="text-xl font-black leading-tight mb-2">FREAK HAILSTORM BATTERS CAPITAL</h3>
+                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/hail.png" class="news-img h-40" alt="Hailstorm Damage">
+                <h3 class="text-xl font-black leading-tight mb-2 hover:text-red-700 cursor-pointer">FREAK HAILSTORM BATTERS CAPITAL</h3>
                 <p class="text-sm text-gray-700 italic">"Unexpected hailstorm damages 300 vehicles and injures 12."</p>
             </div>
 
             <div class="news-item small-story" data-category="society">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Society</p>
-                <h3 class="text-xl font-black leading-tight mb-2">MIDDLE SCHOOL ENFORCES PHONE BAN</h3>
+                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/ban.png" class="news-img h-40" alt="No Cellphones Sign">
+                <h3 class="text-xl font-black leading-tight mb-2 hover:text-red-700 cursor-pointer">MIDDLE SCHOOL ENFORCES PHONE BAN</h3>
                 <p class="text-sm text-gray-700 italic">"Local middle school bans cellphone use during school hours."</p>
             </div>
 
-            <div class="news-item small-story" data-category="entertainment">
+            <div class="news-item small-story border-b-0 pb-0" data-category="entertainment">
                 <p class="text-red-600 font-bold text-xs uppercase mb-1">Entertainment</p>
-                <h3 class="text-xl font-black leading-tight mb-2">TIKTOK #TRASHCHALLENGE GOES VIRAL</h3>
+                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/tiktok.png" class="news-img h-40" alt="TikTok Trash Challenge">
+                <h3 class="text-xl font-black leading-tight mb-2 hover:text-red-700 cursor-pointer">TIKTOK #TRASHCHALLENGE GOES VIRAL</h3>
                 <p class="text-sm text-gray-700 italic">"Students clean up parks in viral TikTok movement."</p>
             </div>
 
@@ -127,14 +146,20 @@
                 if (category === 'all') {
                     // 恢復首頁網格階級
                     container.className = 'grid-home';
-                    items.forEach(item => item.classList.remove('hidden'));
+                    items.forEach(item => {
+                        item.classList.remove('hidden');
+                        // 恢復原本的網格佔位
+                        if (item.classList.contains('lead-story')) item.style.gridColumn = "span 12";
+                        else if (item.classList.contains('big-story')) item.style.gridColumn = "span 6";
+                        else if (item.classList.contains('small-story')) item.style.gridColumn = "span 4";
+                    });
                 } else {
                     // 切換為靠左列表佈局
                     container.className = 'list-category';
                     items.forEach(item => {
                         if (item.getAttribute('data-category') === category) {
                             item.classList.remove('hidden');
-                            // 統一分類頁內容格式
+                            // 統一分類頁內容格式，取消網格佔位
                             item.style.gridColumn = "auto"; 
                         } else {
                             item.classList.add('hidden');
