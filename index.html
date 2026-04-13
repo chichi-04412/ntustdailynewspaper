@@ -1,137 +1,127 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日城市新聞 | Daily City News</title>
+    <title>Daily City News | Your Trusted Source</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #ffffff; color: #000000; font-family: 'Noto Sans TC', sans-serif; }
-        .font-masthead { font-family: 'Roboto', sans-serif; text-transform: uppercase; font-weight: 900; color: #cc0000; }
-        .breaking-news-bar { background-color: #cc0000; color: white; padding: 0.5rem 1rem; text-transform: uppercase; font-weight: bold; font-size: 0.875rem; }
-        .nav-btn { cursor: pointer; transition: color 0.2s; }
+        body { background-color: #ffffff; color: #000000; font-family: 'Roboto', sans-serif; }
+        .font-masthead { text-transform: uppercase; font-weight: 900; color: #cc0000; }
+        .nav-btn { cursor: pointer; transition: color 0.2s; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
         .nav-btn:hover { color: #cc0000; }
-        .news-card { transition: all 0.3s ease; }
-        .hidden { display: none; }
         .active-filter { color: #cc0000; border-bottom: 2px solid #cc0000; }
+        .hidden { display: none; }
+        .news-item { border-bottom: 1px solid #eee; padding-bottom: 2rem; margin-bottom: 2rem; }
     </style>
 </head>
 <body class="p-0">
 
     <header class="bg-black text-white p-4 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <h1 class="font-masthead text-3xl md:text-4xl leading-none tracking-tighter">Daily City News 每日城市新聞</h1>
-            <nav id="nav-filters" class="flex gap-6 text-base font-bold">
-                <span class="nav-btn active-filter" data-filter="all">首頁</span>
-                <span class="nav-btn" data-filter="environment">環境</span>
-                <span class="nav-btn" data-filter="society">社會</span>
-                <span class="nav-btn" data-filter="entertainment">娛樂</span>
-                <span class="nav-btn" data-filter="tech">科技</span>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <h1 class="font-masthead text-3xl tracking-tighter">Daily City News</h1>
+            <nav id="nav-filters" class="flex gap-6 mt-4 md:mt-0 md:justify-end w-full">
+                <span class="nav-btn active-filter" data-filter="all">Home</span>
+                <span class="nav-btn" data-filter="environment">Environment</span>
+                <span class="nav-btn" data-filter="society">Society</span>
+                <span class="nav-btn" data-filter="entertainment">Entertainment</span>
+                <span class="nav-btn" data-filter="tech">Tech</span>
             </nav>
         </div>
     </header>
-    
-    <div class="breaking-news-bar max-w-7xl mx-auto mt-2 flex items-center gap-2">
-        <span class="bg-white text-cc0000 px-2 rounded font-black text-xs" style="color:#cc0000">BREAKING</span>
-        <span class="truncate">【快訊】通勤列車於中心車站附近脫軌，緊急救援行動進行中...</span>
-    </div>
 
-    <main class="max-w-7xl mx-auto p-4 md:p-8">
-        <div id="news-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <main class="max-w-7xl mx-auto p-6 md:p-12">
+        <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-12">
             
-            <article class="news-card md:col-span-2 border-b md:border-b-0 md:border-r border-gray-200 pr-0 md:pr-8" data-category="society">
-                <span class="text-red-600 font-bold text-xs uppercase">社會 / 交通</span>
-                <img src="https://chichi-04412.github.io/ntustdailynewspaper/images/train.png" class="w-full h-80 object-cover my-4" alt="火車出軌">
-                <h2 class="text-3xl md:text-5xl font-black mb-4 hover:text-red-700 cursor-pointer">RUSH HOUR TERROR: COMMUTER TRAIN DERAILS, FIVE INJURED</h2>
-                <p class="text-lg font-bold text-gray-800 mb-2">尖峰時刻驚魂：通勤列車脫軌造成五人受傷，全城交通陷入癱瘓。</p>
-                <p class="text-gray-600">A packed commuter train jumped the tracks during the morning rush hour near Central Station today, triggering a major transportation crisis.</p>
-            </article>
-
-            <div class="md:col-span-1 flex flex-col gap-8">
-                
-                <article class="news-card border-b border-gray-100 pb-6" data-category="society">
-                    <span class="text-red-600 font-bold text-xs uppercase">社會 / 經濟</span>
-                    <h3 class="text-xl font-bold mt-2 hover:text-red-700 cursor-pointer">PRICED OUT: RENTS SURGE 25% AS YOUTH DEMAND ACTION</h3>
-                    <p class="text-sm text-gray-600 mt-2">市區租金飆升 25%，憤怒的年輕專業人士與學生走上街頭要求政府介入管制。</p>
-                </article>
-
-                <article class="news-card border-b border-gray-100 pb-6" data-category="tech">
-                    <span class="text-red-600 font-bold text-xs uppercase">科技 / 犯罪</span>
-                    <h3 class="text-xl font-bold mt-2 hover:text-red-700 cursor-pointer">PHISHING SCAM DISGUISED AS SCHOLARSHIP COSTS STUDENT $5,000</h3>
-                    <p class="text-sm text-gray-600 mt-2">精密釣魚郵件偽裝成獎學金通知，騙走在地大學生五千美元積蓄，警方發布資安警告。</p>
-                </article>
-
-                <article class="news-card" data-category="tech">
-                    <span class="text-red-600 font-bold text-xs uppercase">科技 / 資安</span>
-                    <h3 class="text-xl font-bold mt-2 hover:text-red-700 cursor-pointer">MASSIVE DATA BREACH: 2 MILLION GORIDE USERS EXPOSED</h3>
-                    <p class="text-sm text-gray-600 mt-2">共乘 App 證實大規模個資外洩，超過兩百萬名用戶的信用卡與行程紀錄恐遭公開。</p>
-                </article>
+            <div class="news-item" data-category="society">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Society</p>
+                <h2 class="text-3xl font-black leading-tight mb-3">RUSH HOUR TERROR: COMMUTER TRAIN DERAILS, FIVE INJURED</h2>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A commuter train derailed during rush hour today, leaving five people injured and causing massive transportation delays."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A wide-angle aerial shot of tilted carriages on the tracks surrounded by emergency workers.</p>
             </div>
 
-            <article class="news-card border-t border-gray-200 pt-6" data-category="environment">
-                <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover mb-4" alt="冰雹">
-                <span class="text-red-600 font-bold text-xs uppercase">環境 / 天氣</span>
-                <h3 class="text-xl font-bold mt-2 hover:text-red-700 cursor-pointer">FREAK HAILSTORM BATTERS CAPITAL, INJURING 12</h3>
-                <p class="text-sm text-gray-600 mt-2">突如其來的冰雹襲擊首都，造成 300 多輛汽車損壞及 12 人受傷，氣候專家示警異常頻率增加。</p>
-            </article>
+            <div class="news-item" data-category="society">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Society</p>
+                <h2 class="text-3xl font-black leading-tight mb-3">PRICED OUT: RENTS SURGE 25% AS YOUTH DEMAND ACTION</h2>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"Rent prices in the city have increased by 25% over the past year, prompting students and young professionals to call for government intervention."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A crowd of young protesters in front of City Hall holding signs that read "Housing is a Human Right."</p>
+            </div>
 
-            <article class="news-card border-t border-gray-200 pt-6" data-category="environment">
-                <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover mb-4" alt="貓頭鷹">
-                <span class="text-red-600 font-bold text-xs uppercase">環境 / 生態</span>
-                <h3 class="text-xl font-bold mt-2 hover:text-red-700 cursor-pointer">EXTINCT OWL SPECIES REDISCOVERED IN FOREST RESERVE</h3>
-                <p class="text-sm text-gray-600 mt-2">被認為已絕種的稀有貓頭鷹再次現蹤森林保護區，生態學家呼籲加強棲地保護行動。</p>
-            </article>
+            <div class="news-item" data-category="tech">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Tech</p>
+                <h2 class="text-3xl font-black leading-tight mb-3">PHISHING SCAM DISGUISED AS SCHOLARSHIP COSTS STUDENT $5,000</h2>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A local university student lost over $5,000 after falling for a sophisticated phishing email disguised as an official scholarship offer."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A stressed student sitting in a dark room in front of a laptop, holding their head in frustration.</p>
+            </div>
 
-            <article class="news-card border-t border-gray-200 pt-6" data-category="tech">
-                <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover mb-4" alt="機器人">
-                <span class="text-red-600 font-bold text-xs uppercase">科技 / 醫療</span>
-                <h3 class="text-xl font-bold mt-2 hover:text-red-700 cursor-pointer">HOSPITAL INTRODUCES AI ROBOTS TO BOOST EFFICIENCY</h3>
-                <p class="text-sm text-gray-600 mt-2">大型醫院引進 AI 機器人配送藥物，提升營運效率之餘也引發員工對工作穩定性的憂慮。</p>
-            </article>
+            <div class="news-item" data-category="tech">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Tech</p>
+                <h2 class="text-3xl font-black leading-tight mb-3">MASSIVE DATA BREACH: 2 MILLION RIDE-SHARE USERS EXPOSED</h2>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A major ride-sharing application has confirmed a significant security breach, leaking the personal data of over 2 million users online."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A smartphone screen displaying a bright red "Security Breach" alert with a blurred city background.</p>
+            </div>
 
-            <article class="news-card border-t border-gray-200 pt-6" data-category="entertainment">
-                <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover mb-4" alt="馬拉松">
-                <span class="text-red-600 font-bold text-xs uppercase">娛樂 / 體育</span>
-                <h3 class="text-xl font-bold mt-2 hover:text-red-700 cursor-pointer">LOCAL ATHLETE SHATTERS NATIONAL MARATHON RECORD</h3>
-                <p class="text-sm text-gray-600 mt-2">22 歲在地青年跑者以驚人表現打破國家馬拉松紀錄，成功取得國際賽事入場券。</p>
-            </article>
+            <div class="news-item" data-category="entertainment">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Entertainment</p>
+                <h2 class="text-3xl font-black leading-tight mb-3">LOCAL RUNNER SHATTERS NATIONAL MARATHON RECORD</h2>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A local 22-year-old athlete stunned the world today by breaking the national marathon record and qualifying for the international games."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: The athlete crossing the finish line with arms raised, showing a digital clock with a record time.</p>
+            </div>
 
-            <article class="news-card border-t border-gray-200 pt-6" data-category="society">
-                <img src="https://images.unsplash.com/photo-1511556820780-d912e42b4980?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover mb-4" alt="手機禁令">
-                <span class="text-red-600 font-bold text-xs uppercase">社會 / 教育</span>
-                <h3 class="text-xl font-bold mt-2 hover:text-red-700 cursor-pointer">MIDDLE SCHOOL ENFORCES TOTAL CELLPHONE BAN</h3>
-                <p class="text-sm text-gray-600 mt-2">本市一所中學實施校內全面禁用手機政策，引發家長與學生群體的高度關注與爭論。</p>
-            </article>
+            <div class="news-item" data-category="environment">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Environment</p>
+                <h2 class="text-3xl font-black leading-tight mb-3">EXTINCT OWL SPECIES REDISCOVERED IN FOREST RESERVE</h2>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"Wildlife experts confirmed the sighting of a rare owl species, previously thought to be extinct, during a research expedition."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A close-up, high-definition image of a rare owl perched on a mossy branch in a green forest.</p>
+            </div>
 
-            <article class="news-card border-t border-gray-200 pt-6" data-category="entertainment">
-                <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?q=80&w=600&auto=format&fit=crop" class="w-full h-48 object-cover mb-4" alt="淨灘">
-                <span class="text-red-600 font-bold text-xs uppercase">娛樂 / 社群</span>
-                <h3 class="text-xl font-bold mt-2 hover:text-red-700 cursor-pointer">TIKTOK #TRASHCHALLENGE GOES VIRAL IN LOCAL PARKS</h3>
-                <p class="text-sm text-gray-600 mt-2">高中生發起的淨灘挑戰影片在 TikTok 獲得兩百萬次觀看，成功帶動社區環保熱潮。</p>
-            </article>
+            <div class="news-item" data-category="tech">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Tech</p>
+                <h2 class="text-3xl font-black leading-tight mb-3">HOSPITAL INTRODUCES AI ROBOTS TO BOOST EFFICIENCY</h2>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A major hospital has introduced AI robots to deliver medicine and documents, sparking a debate regarding job security for medical staff."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A sleek white robot moving through a hospital corridor while medical staff watch from the background.</p>
+            </div>
+
+            <div class="news-item" data-category="environment">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Environment</p>
+                <h2 class="text-3xl font-black leading-tight mb-3">FREAK HAILSTORM BATTERS CAPITAL, INJURING 12</h2>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"An unexpected hailstorm hit the capital yesterday, damaging over 300 vehicles and leaving 12 people injured as climate patterns shift."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A street covered in large white hailstones with cars showing smashed windshields.</p>
+            </div>
+
+            <div class="news-item" data-category="society">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Society</p>
+                <h2 class="text-3xl font-black leading-tight mb-3">MIDDLE SCHOOL ENFORCES TOTAL CELLPHONE BAN</h2>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A local middle school has completely banned cellphone use during school hours, prompting mixed reactions from both students and parents."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A sign reading "No Cellphones Allowed" posted on a school hallway wall next to a locker.</p>
+            </div>
+
+            <div class="news-item" data-category="entertainment">
+                <p class="text-red-600 font-bold text-xs uppercase mb-1">Entertainment</p>
+                <h2 class="text-3xl font-black leading-tight mb-3">TIKTOK #TRASHCHALLENGE GOES VIRAL IN LOCAL PARKS</h2>
+                <p class="text-lg text-gray-800 font-bold mb-3 italic">"A group of high school students started a TikTok challenge to clean up local parks, gaining over 2 million views and inspiring others."</p>
+                <p class="text-sm text-gray-500 font-bold uppercase tracking-tighter">Photo Idea: A group of smiling teenagers holding large bags of collected trash while one person films with a phone.</p>
+            </div>
 
         </div>
     </main>
 
     <script>
         const filters = document.querySelectorAll('.nav-btn');
-        const cards = document.querySelectorAll('.news-card');
+        const items = document.querySelectorAll('.news-item');
 
         filters.forEach(filter => {
             filter.addEventListener('click', () => {
                 const category = filter.getAttribute('data-filter');
-
-                // 移除舊的 active 樣式，加入新的
                 filters.forEach(f => f.classList.remove('active-filter'));
                 filter.classList.add('active-filter');
 
-                // 顯示/隱藏卡片
-                cards.forEach(card => {
-                    if (category === 'all' || card.getAttribute('data-category') === category) {
-                        card.classList.remove('hidden');
+                items.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.classList.remove('hidden');
                     } else {
-                        card.classList.add('hidden');
+                        item.classList.add('hidden');
                     }
                 });
             });
